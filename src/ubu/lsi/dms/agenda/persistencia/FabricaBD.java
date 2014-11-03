@@ -1,21 +1,30 @@
-/**
- * 
- */
 package ubu.lsi.dms.agenda.persistencia;
 
 /**
  * @author alumno
  *
  */
-public class FabricaBD implements FabricaPersistencia {
-
-	/* (non-Javadoc)
-	 * @see ubu.lsi.dms.agenda.persistencia.FabricaPersistencia#crearFachadaPersistente()
-	 */
-	@Override
-	public FachadaPersistente crearFachadaPersistente() {
-		// TODO Auto-generated method stub
-		return null;
+public class FabricaBD implements FabricaPersistencia 
+{
+	FachadaBD fachadaAgenda = FachadaBD.getInstance();
+	
+	private static FabricaBD instancia;
+	
+	private FabricaBD()
+	{
 	}
-
+	
+	public static FabricaBD getInstance()
+	{
+		if (instancia == null)
+		{
+			instancia = new FabricaBD();
+		}
+		return instancia;
+	}
+	
+	public FachadaPersistente crearFachadaPersistente()
+	{
+		return fachadaAgenda;
+	}
 }
