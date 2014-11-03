@@ -44,6 +44,14 @@ public class Contacto implements Serializable{
 		this.tipoContacto = tipoContacto;
 	}
 
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public int getIdContacto() {
+		return idContacto;
+	}
+
 	@Override
 	public String toString() {
 		return "Contacto [idContacto=" + idContacto + ", nombre=" + nombre

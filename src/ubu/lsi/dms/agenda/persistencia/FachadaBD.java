@@ -1,5 +1,7 @@
 package ubu.lsi.dms.agenda.persistencia;
 
+import java.util.List;
+
 import ubu.lsi.dms.agenda.modelo.Contacto;
 import ubu.lsi.dms.agenda.modelo.Llamada;
 import ubu.lsi.dms.agenda.modelo.TipoContacto;
@@ -58,19 +60,22 @@ private static FachadaBD intancia;
 	}
 
 	@Override
-	public void consultarContacto(String apellido) {
+	public List<Contacto> consultarContacto(String apellido) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void consultarLlamada(Contacto contacto) {
+	public List<Llamada> consultarLlamada(Contacto contacto) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void consultarTipoContacto() {
+	public List<TipoContacto> consultarTipoContacto() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

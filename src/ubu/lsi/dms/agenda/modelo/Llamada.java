@@ -26,6 +26,14 @@ public class Llamada implements Serializable{
 		this.notas = notas;
 	}
 	
+	public Contacto getContacto() {
+		return contacto;
+	}
+
+	public int getIdLlamada() {
+		return idLlamada;
+	}
+
 	@Override
 	public String toString() {
 		return "Llamada [idLlamada=" + idLlamada + ", contacto=" + contacto

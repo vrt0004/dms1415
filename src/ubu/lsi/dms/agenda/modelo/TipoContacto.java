@@ -20,6 +20,11 @@ public class TipoContacto implements Serializable{
 	}
 
 
+	public int getIdTipoContacto() {
+		return idTipoContacto;
+	}
+
+
 	@Override
 	public String toString() {
 		return "TipoContacto [idTipoContacto=" + idTipoContacto

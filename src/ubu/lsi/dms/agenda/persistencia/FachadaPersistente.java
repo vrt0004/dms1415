@@ -1,5 +1,7 @@
 package ubu.lsi.dms.agenda.persistencia;
 
+import java.util.List;
+
 import ubu.lsi.dms.agenda.modelo.Contacto;
 import ubu.lsi.dms.agenda.modelo.Llamada;
 import ubu.lsi.dms.agenda.modelo.TipoContacto;
@@ -18,7 +20,7 @@ public interface FachadaPersistente
 	public void actualizarLlamada(int id, Llamada llamada);
 	public void actualizarTipoContacto(int id, TipoContacto tipoContacto);
 
-	public void consultarContacto(String apellido);
-	public void consultarLlamada(Contacto contacto);
-	public void consultarTipoContacto();
+	public List<Contacto> consultarContacto(String apellido);
+	public List<Llamada> consultarLlamada(Contacto contacto);
+	public List<TipoContacto> consultarTipoContacto();
 }
