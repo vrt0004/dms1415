@@ -1,6 +1,10 @@
 package ubu.lsi.dms.agenda.persistencia;
 
+import java.io.*;
+
 import ubu.lsi.dms.agenda.modelo.Contacto;
+import ubu.lsi.dms.agenda.modelo.Llamada;
+import ubu.lsi.dms.agenda.modelo.TipoContacto;
 
 /**
  * @author alumno
@@ -17,39 +21,51 @@ public class FachadaBin implements FachadaPersistente
 			instancia = new FachadaBin();
 		return instancia;
 	}
-	
+
 	@Override
-	public void crearContacto() {
+	public void crearContacto(Contacto contacto) 
+	{
+		ObjectOutputStream out = null;
+		try 
+		{
+			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binary\\contactos.dat"));
+			out.writeObject(contacto);
+			out.close();
+		} catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void crearLlamada(Llamada llamada) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void crearLlamada() {
+	public void crearTipoContacto(TipoContacto tipoContacto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void crearTipoContacto() {
+	public void actualizarContacto(int id, Contacto contacto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void actualizarContacto() {
+	public void actualizarLlamada(int id, Llamada llamada) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void actualizarLlamada() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actualizarTipoContacto() {
+	public void actualizarTipoContacto(int id, TipoContacto tipoContacto) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -71,5 +87,4 @@ public class FachadaBin implements FachadaPersistente
 		// TODO Auto-generated method stub
 		
 	}
-
 }

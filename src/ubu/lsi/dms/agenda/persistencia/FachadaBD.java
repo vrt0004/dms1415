@@ -1,6 +1,8 @@
 package ubu.lsi.dms.agenda.persistencia;
 
 import ubu.lsi.dms.agenda.modelo.Contacto;
+import ubu.lsi.dms.agenda.modelo.Llamada;
+import ubu.lsi.dms.agenda.modelo.TipoContacto;
 
 /**
  * @author alumno
@@ -20,37 +22,37 @@ private static FachadaBD intancia;
 	}
 	
 	@Override
-	public void crearContacto() {
+	public void crearContacto(Contacto contacto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void crearLlamada() {
+	public void crearLlamada(Llamada llamada) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void crearTipoContacto() {
+	public void crearTipoContacto(TipoContacto tipoContacto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void actualizarContacto() {
+	public void actualizarContacto(int id, Contacto contacto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void actualizarLlamada() {
+	public void actualizarLlamada(int i, Llamada llamada) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void actualizarTipoContacto() {
+	public void actualizarTipoContacto(int i, TipoContacto tipoContacto) {
 		// TODO Auto-generated method stub
 		
 	}
