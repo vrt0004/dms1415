@@ -9,7 +9,7 @@ import org.hsqldb.jdbc.JDBCDataSource;
 
 import ubu.lsi.dms.agenda.modelo.*;
 
-public class FachadaAgendaBD implements FachadaAgenda {
+public class FachadaBD implements FachadaAgenda {
 	Connection con=null;
 	Statement stm=null;
 	private static final String servidor = "localhost";
@@ -22,14 +22,14 @@ public class FachadaAgendaBD implements FachadaAgenda {
 
 	private static final String baseDeDatos = "Agenda";
 	
-	private static FachadaAgendaBD intancia;
+	private static FachadaBD intancia;
 	JDBCDataSource ds = new JDBCDataSource();
 	
-	private FachadaAgendaBD(){}
+	private FachadaBD(){}
 	
-	public static FachadaAgendaBD getInstance(){
+	public static FachadaBD getInstance(){
 		if(intancia == null)
-			intancia = new FachadaAgendaBD();
+			intancia = new FachadaBD();
 		return intancia;
 	}
 	
@@ -117,7 +117,7 @@ public class FachadaAgendaBD implements FachadaAgenda {
 	}
 
 	@Override
-	public void crearTipoContacto(TipoDeContacto tipocontacto) {
+	public void crearTipoContacto(TipoContacto tipocontacto) {
 		try {
 			con=getConnection();
 			stm=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -139,7 +139,44 @@ public class FachadaAgendaBD implements FachadaAgenda {
 
 	@Override
 	public void actualizarContacto(int id, Contacto contacto) {
-		// TODO Auto-generated method stub
+		try {
+			con=getConnection();
+			stm=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=stm.executeQuery("SELECT * FROM CONTACTOS");
+			while(rs.next()){
+				
+				if(contactoAc.getId()==rs.getInt("IDCONTACTO")){
+					rs.updateInt("IDCONTACTO",contactoAc.getId());
+					rs.updateString("Nombre", contactoAc.getNombre());
+					rs.updateString("Apellidos", contactoAc.getApellidos());
+					rs.updateString("Estimado", contactoAc.getEstimado());
+					rs.updateString("Direccion", contactoAc.getDireccion());
+					rs.updateString("Ciudad", contactoAc.getCiudad());
+					rs.updateString("EdoOProv", contactoAc.getEdoOProv());
+					rs.updateString("CodPostal", contactoAc.getCodPostal());
+					rs.updateString("Region", contactoAc.getRegion());
+					rs.updateString("Pais", contactoAc.getPais());
+					rs.updateString("NombreCompania", contactoAc.getNombreCompañia());
+					rs.updateString("Cargo", contactoAc.getCargo());
+					rs.updateString("TelefonoTrabajo", contactoAc.getTelefonoTrabajo());
+					rs.updateString("ExtensionTrabajo", contactoAc.getExtensionTrabajo());
+					rs.updateString("TelefonoMovil", contactoAc.getTelefonoMovil());
+					rs.updateString("NumFax", contactoAc.getNumFax());
+					rs.updateString("NomCorreoElectronico",contactoAc.getNomCorreoElectronico());
+					rs.updateDate("FechaUltimaReunion",contactoAc.getFechaUltimaReunion());
+					rs.updateInt("IdTipoContacto", contactoAc.getIdTipoContacto());
+					rs.updateString("ReferidoPor", contactoAc.getReferidoPor());
+					rs.updateString("Notas", contactoAc.getNotas());
+					rs.updateRow();
+					System.out.println("contactoactualizado");
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.getMessage();
+			System.out.println("Error al abrir el archivo "+e);
+		}
+		
 		
 	}
 
