@@ -168,7 +168,6 @@ public class FachadaBD implements FachadaAgenda {
 					rs.updateString("ReferidoPor", contactoAc.getReferidoPor());
 					rs.updateString("Notas", contactoAc.getNotas());
 					rs.updateRow();
-					System.out.println("contactoactualizado");
 				}
 				
 			}
@@ -180,15 +179,57 @@ public class FachadaBD implements FachadaAgenda {
 		
 	}
 
+
 	@Override
 	public void actualizarLlamada(int i, Llamada llamada) {
-		// TODO Auto-generated method stub
+		try {
+			con=getConnection();
+			stm=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=stm.executeQuery("select * from llamadas");
+			while(rs.next()){
+				if(llamada.getIdLlamada()==rs.getInt("IDLLAMADA")){
+					
+					rs.updateInt("Idllamada", i);
+					rs.updateInt("IdContacto", llamada.getContactoId());
+					rs.updateDate("Fechallamada", llamada.getFechaLlamada());
+					rs.updateTime("HoraLlamada", llamada.getHoraLlamada());
+					rs.updateString("Asunto", llamada.getAsunto());
+					rs.updateString("Notas", llamada.getNota());
+					rs.updateRow();
+		
+					con.close();
+				}
+			}
+		} catch (SQLException e) {
+			e.getMessage();
+			System.out.println("Error al abrir el archivo "+e);
+		}
+		
 		
 	}
 
 	@Override
-	public void actualizarTipoContacto(int i, TipoContacto tipoContacto) {
-		// TODO Auto-generated method stub
+	public void actualizarTipoContacto(int id, TipoContacto tipocontacto) {
+		try {
+			con=getConnection();
+			stm=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs=stm.executeQuery("select * from TiposDecontacto");
+			while(rs.next()){
+				if(tipocontacto.getIdTipoDeContacto()==rs.getInt("IDTIPOCONTACTO")){
+					
+					rs.updateInt("IDTIPOCONTACTO", tipocontacto.getIdTipoDeContacto());
+					rs.updateString("TIPOCONTACTO",tipocontacto.getTipoDeConctacto());
+					rs.updateRow();
+					
+					con.close();
+				}
+			}
+		} catch (SQLException e) {
+			e.getMessage();
+			System.out.println("Error al abrir el archivo "+e);
+		}
+		
+		
 		
 	}
 
