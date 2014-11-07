@@ -217,7 +217,7 @@ public class FachadaBD implements FachadaAgenda {
 			while(rs.next()){
 				if(tipocontacto.getIdTipoDeContacto()==rs.getInt("IDTIPOCONTACTO")){
 					
-					rs.updateInt("IDTIPOCONTACTO", tipocontacto.getIdTipoDeContacto());
+					rs.updateInt("IDTIPOCONTACTO", id);
 					rs.updateString("TIPOCONTACTO",tipocontacto.getTipoDeConctacto());
 					rs.updateRow();
 					
