@@ -29,7 +29,7 @@ public class FachadaBin implements FachadaPersistente
 		ObjectOutputStream out = null;
 		try 
 		{
-			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binary\\contactos.dat"));
+			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binario\\contactos.dat"));
 			out.writeObject(contacto);
 			out.close();
 		} 
@@ -49,7 +49,7 @@ public class FachadaBin implements FachadaPersistente
 		ObjectOutputStream out = null;
 		try 
 		{
-			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binary\\llamadas.dat"));
+			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binario\\llamadas.dat"));
 			out.writeObject(llamada);
 			out.close();
 		} 
@@ -69,7 +69,7 @@ public class FachadaBin implements FachadaPersistente
 		ObjectOutputStream out = null;
 		try 
 		{
-			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binary\\tiposContacto.dat"));
+			out = new ObjectOutputStream(new FileOutputStream(".\\res\\binario\\tiposContacto.dat"));
 			out.writeObject(tipoContacto);
 			out.close();
 		}
@@ -90,7 +90,7 @@ public class FachadaBin implements FachadaPersistente
 		List<Contacto> resultados = new ArrayList<Contacto>();
 		try 
 		{
-			FileInputStream lector = new FileInputStream(".\\res\\binary\\contactos.dat");
+			FileInputStream lector = new FileInputStream(".\\res\\binario\\contactos.dat");
 			ObjectInputStream in = new ObjectInputStream(lector);
 			while (lector.available() > 0) 
 			{
@@ -133,7 +133,7 @@ public class FachadaBin implements FachadaPersistente
 		List<Llamada> resultados = new ArrayList<Llamada>();
 		try 
 		{
-			FileInputStream lector = new FileInputStream(".\\res\\binary\\llamadas.dat");
+			FileInputStream lector = new FileInputStream(".\\res\\binario\\llamadas.dat");
 			ObjectInputStream in = new ObjectInputStream(lector);
 			while (lector.available() > 0) 
 			{
@@ -176,7 +176,7 @@ public class FachadaBin implements FachadaPersistente
 		List<TipoContacto> resultados = new ArrayList<TipoContacto>();
 		try 
 		{
-			FileInputStream lector = new FileInputStream(".\\res\\binary\\tiposContacto.dat");
+			FileInputStream lector = new FileInputStream(".\\res\\binario\\tiposContacto.dat");
 			ObjectInputStream in = new ObjectInputStream(lector);
 			while (lector.available() > 0) 
 			{
@@ -220,7 +220,7 @@ public class FachadaBin implements FachadaPersistente
 		List<Contacto> contactosLeidos = new ArrayList<Contacto>();
 		try 
 		{
-			FileInputStream Lector = new FileInputStream(".\\res\\binary\\contactos.dat");
+			FileInputStream Lector = new FileInputStream(".\\res\\binario\\contactos.dat");
 			ObjectInputStream in = new ObjectInputStream(Lector);
 			while (Lector.available() > 0) 
 			{
@@ -262,7 +262,7 @@ public class FachadaBin implements FachadaPersistente
 		List<Llamada> llamadasLeidas = new ArrayList<Llamada>();
 		try 
 		{
-			FileInputStream lector = new FileInputStream(".\\res\\binary\\llamadas.dat");
+			FileInputStream lector = new FileInputStream(".\\res\\binario\\llamadas.dat");
 			ObjectInputStream in = new ObjectInputStream(lector);
 			while (lector.available() > 0) 
 			{
@@ -303,12 +303,11 @@ public class FachadaBin implements FachadaPersistente
 		List<TipoContacto> tipoContactoLeidos = new ArrayList<TipoContacto>();
 		try 
 		{
-			FileInputStream lector = new FileInputStream(".\\res\\binary\\llamadas.dat");
+			FileInputStream lector = new FileInputStream(".\\res\\binario\\tiposContacto.dat");
 			ObjectInputStream in = new ObjectInputStream(lector);
 			while (lector.available() > 0) 
 			{
 				aux = (TipoContacto) in.readObject();
-				System.out.println(aux.toString());
 				tipoContactoLeidos.add(aux);
 			}
 			in.close();
