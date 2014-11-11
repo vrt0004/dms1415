@@ -9,6 +9,10 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class TipoContacto implements Serializable{
+	/**
+	 * 
+	 */
+	
 	private int idTipoContacto;
 	private String TipoContacto;
 	
@@ -17,6 +21,21 @@ public class TipoContacto implements Serializable{
 		super();
 		this.idTipoContacto = idTipoContacto;
 		TipoContacto = tipoContacto;
+	}
+
+
+	public String getTipoContacto() {
+		return TipoContacto;
+	}
+
+
+	public void setTipoContacto(String tipoContacto) {
+		TipoContacto = tipoContacto;
+	}
+
+
+	public void setIdTipoContacto(int idTipoContacto) {
+		this.idTipoContacto = idTipoContacto;
 	}
 
 

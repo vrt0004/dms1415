@@ -23,6 +23,7 @@ public class FabricaBD implements FabricaPersistencia
 		return instancia;
 	}
 	
+	@Override
 	public FachadaPersistente crearFachadaPersistente()
 	{
 		return fachadaAgenda;

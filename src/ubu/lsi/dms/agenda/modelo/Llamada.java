@@ -1,6 +1,7 @@
 package ubu.lsi.dms.agenda.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 /**
  * Clase de entidad con la información de Llamada
  * @author Carlos López
@@ -26,6 +27,47 @@ public class Llamada implements Serializable{
 		this.notas = notas;
 	}
 	
+	
+	public String getFechaLlamada() {
+		return fechaLlamada;
+	}
+
+
+	public void setFechaLlamada(String fechaLlamada) {
+		this.fechaLlamada = fechaLlamada;
+	}
+
+
+	public String getAsunto() {
+		return asunto;
+	}
+
+
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+
+
+	public String getNotas() {
+		return notas;
+	}
+
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
+
+	public void setIdLlamada(int idLlamada) {
+		this.idLlamada = idLlamada;
+	}
+
+
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
+
+
 	public Contacto getContacto() {
 		return contacto;
 	}
