@@ -1,9 +1,7 @@
-package ubu.lsi.dms.agenda.test;
-
-import java.sql.Date;
-import java.sql.Time;
+package Test;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import ubu.lsi.dms.agenda.modelo.*;
 import ubu.lsi.dms.agenda.persistencia.*;
@@ -18,17 +16,17 @@ public class Test
 		FachadaPersistente agendaDB = agendaFactoryDB.crearFachadaPersistente();
 		FachadaPersistente agendaBinary = agendaFactoryBinary.crearFachadaPersistente();
 
-		//test(agendaDB);
+		test(agendaDB);
 		test(agendaBinary);
 
 		System.out.println("Ok.");
 	}
 	
 	private static void test(FachadaPersistente agenda) {
-		TipoContacto tipodecontacto = new TipoContacto(1, "Conciencia");
-		Contacto contacto = new Contacto(1, "Pepito", "Grillo", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "Conciencias SA", "Presidente", "947258258", "0", "652148974", "947258258", "pepitogrillo@gmail.com", "", tipodecontacto);
-		Llamada llamada1 = new Llamada(1, contacto, "5/11/2014","Cumpleaños", "");
-		Llamada llamada2 = new Llamada(2, contacto, "10/11/2014","Fiesta", "");
+		TipoContacto tipodecontacto = new TipoContacto(3, "Conciencia");
+		Contacto contacto = new Contacto(3, "Pepito", "Grillo", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "Conciencias SA", "Presidente", "947258258", "0", "652148974", "947258258", "pepitogrillo@gmail.com", "", tipodecontacto);
+		//Llamada llamada1 = new Llamada(3, contacto, "2014-11-5","Cumpleaños", "");
+		Llamada llamada2 = new Llamada(2, contacto, "2014-11-14","Fiesta", "");
 		
 
 		List<Llamada> llamadas = new ArrayList<Llamada>();
@@ -39,13 +37,13 @@ public class Test
 		List<TipoContacto> consultaTipos = null;
 
 		// Inserción de datos.
-		agenda.crearContacto(contacto);
-		agenda.crearLlamada(llamada1);
-		agenda.crearTipoContacto(tipodecontacto);
+		//agenda.crearContacto(contacto);
+		//agenda.crearLlamada(llamada1);
+		//agenda.crearTipoContacto(tipodecontacto);
 
 		// Actualización de datos.
-		Contacto actualizacionContacto = new Contacto(1, "Guepeto", "El carpintero", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "MArionetas SA", "Presidente", "947236547", "0", "65285644", "947236547", "marionetasreales@gmail.com", "", tipodecontacto);
-		Llamada actualizarllamada1 = new Llamada(1, contacto, "5/11/2014","Cumpleaños Pepito", "");
+		Contacto actualizacionContacto = new Contacto(1, "Guepeto", "perez", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "MArionetas SA", "Presidente", "947236547", "0", "65285644", "947236547", "marionetasreales@gmail.com", "", tipodecontacto);
+		Llamada actualizarllamada1 = new Llamada(1, contacto, "2014-11-5","Cumpleaños Pepito", "");
 		TipoContacto actualizartipodecontacto = new TipoContacto(1, "Padre");
 
 		agenda.actualizarContacto(1, actualizacionContacto);
@@ -54,20 +52,28 @@ public class Test
 
 		// Consulta y comprobación de datos.
 		contactos.add(actualizacionContacto);
-		consultaContactos = agenda.consultarContacto("El carpintero");
-		assert (contactos.equals(consultaContactos));
-
+		consultaContactos = agenda.consultarContacto("perez");
+		contactos.equals(consultaContactos);
+		for(Contacto c: consultaContactos){
+			Logger.getLogger("global").info(c.toString());
+		}
 		llamadas.add(actualizarllamada1);
 		consultaLlamadas = agenda.consultarLlamada(actualizacionContacto);
-		assert (consultaLlamadas.equals(llamadas));
+		consultaLlamadas.equals(llamadas);
+		for(Llamada ll: consultaLlamadas){
+			Logger.getLogger("global").info(ll.toString());
+		}
 
 		llamadas.add(llamada2);
-		consultaLlamadas = agenda.consultarLlamada(actualizacionContacto);
-		assert (consultaLlamadas.equals(llamadas));
+		consultaLlamadas = agenda.consultarLlamada(contacto);
+		consultaLlamadas.equals(llamadas);
+		
 		
 		tiposdecontacto.add(actualizartipodecontacto);
 		consultaTipos = agenda.consultarTipoContacto();
-		assert (consultaTipos.equals(tiposdecontacto));
+		for(TipoContacto tp: consultaTipos){
+			Logger.getLogger("global").info(tp.toString());
+		}
 
 		System.out.println("Test completado.");
 	}
