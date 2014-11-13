@@ -38,6 +38,7 @@ public class Test {
 		List<TipoContacto> consultaTipos = null;
 
 		// Inserción de datos.
+		
 		agenda.crearContacto(contacto);
 		agenda.crearLlamada(llamada1);
 		agenda.crearTipoContacto(tipodecontacto);
