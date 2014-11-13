@@ -1,4 +1,5 @@
-package Test;
+package ubu.lsi.dms.agenda.test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

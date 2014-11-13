@@ -1,7 +1,6 @@
 package ubu.lsi.dms.agenda.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 /**
  * Clase de entidad con la información de Llamada
  * @author Carlos López
