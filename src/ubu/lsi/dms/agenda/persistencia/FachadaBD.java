@@ -14,6 +14,11 @@ import org.hsqldb.jdbc.JDBCDataSource;
 import ubu.lsi.dms.agenda.modelo.*;
 
 public class FachadaBD implements FachadaPersistente {
+	
+	/*Secccion de variables
+	 * Variables privadas para la clase
+	 */
+	
 	Connection con=null;
 	Statement stm=null;
 	PreparedStatement pstm=null;
@@ -31,13 +36,18 @@ public class FachadaBD implements FachadaPersistente {
 	private static FachadaBD intancia;
 	JDBCDataSource ds = new JDBCDataSource();
 	
+	/*Constructor privado*/
 	private FachadaBD(){}
+	
+	/*Creacion de la instancia de fachada BD*/
 	
 	public static FachadaBD getInstance(){
 		if(intancia == null)
 			intancia = new FachadaBD();
 		return intancia;
 	}
+	
+	/*Creacion de la coneccion a la base de datos*/
 	
 	private static Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -49,6 +59,7 @@ public class FachadaBD implements FachadaPersistente {
 		return conn;
 	}
 	
+	/*Creacion del metodo de la fabrica abastracta de crearContacto*/
 	
 	@Override
 	public void crearContacto(Contacto contacto) {
@@ -86,13 +97,11 @@ public class FachadaBD implements FachadaPersistente {
 		} catch (SQLException e) {
 			e.getMessage();
 			System.err.println("Error al abrir el archivo"+e);
-			
-			
 		}
 		
 	}
 
-
+	/*Creacion del metodo de la fabrica abstracta de crearLlamada*/
 
 	@Override
 	public void crearLlamada(Llamada llamada) {
@@ -115,13 +124,12 @@ public class FachadaBD implements FachadaPersistente {
 			
 			} catch (SQLException e) {
 				e.getMessage();
-				System.err.println("Error al abrir el archivo"+e);
-				
-				
+				System.err.println("Error al abrir el archivo"+e);	
 			}
-		
 	}
 
+	/*Creacion del metodo de la fabrica abstracta de crearTipoContacto*/
+	
 	@Override
 	public void crearTipoContacto(TipoContacto tipocontacto) {
 		try {
@@ -139,11 +147,9 @@ public class FachadaBD implements FachadaPersistente {
 			e.getMessage();
 			System.out.println("Error al abrir el archivo "+e);
 		}
-		
-		
 	}
 	
-	
+	/*Creacion del metodo de la fabrica abstracta del metodo actualizarContacto*/
 
 	@Override
 	public void actualizarContacto(int id,  Contacto contactoAc) {
@@ -181,10 +187,11 @@ public class FachadaBD implements FachadaPersistente {
 		} catch (SQLException e) {
 			e.getMessage();
 			System.out.println("Error al abrir el archivo "+e);
-		}
-		
+		}	
 	}
-
+	
+	/*Creacion del metodo de la fabrica abstracta del metodo actualizarLlamda*/
+	
 	@Override
 	public void actualizarLlamada(int i, Llamada llamada) {
 		String date=llamada.getFechaLlamada();
@@ -202,7 +209,6 @@ public class FachadaBD implements FachadaPersistente {
 					rs.updateString("Asunto", llamada.getAsunto());
 					rs.updateString("Notas", llamada.getNotas());
 					rs.updateRow();
-		
 					con.close();
 				}
 			}
@@ -210,9 +216,9 @@ public class FachadaBD implements FachadaPersistente {
 			e.getMessage();
 			System.out.println("Error al abrir el archivo "+e);
 		}
-		
-		
 	}
+	
+	/*Creacion del metodo de la fachada absrtracta del metodo actualizarTipoContacto*/
 
 	@Override
 	public void actualizarTipoContacto(int id, TipoContacto tipocontacto) {
@@ -234,70 +240,62 @@ public class FachadaBD implements FachadaPersistente {
 			System.out.println("Error al abrir el archivo "+e);
 		}
 	}
+	
+	/*Creacion del metodo de la fachada abstracta del metodo consultarContacto*/
 
 	@Override
 	public List<Contacto> consultarContacto(String apellido)  {
-		
 		Contacto aux=null;
 		TipoContacto tipoContacto=null;
 		List<Contacto> resultados = new ArrayList<Contacto>();
 		String sql = "SELECT * FROM CONTACTOS" + " WHERE APELLIDOS=?";
 		try {
-			
 			con=getConnection();
 			pstm=con.prepareStatement(sql);
-			
-				pstm.setString(1, apellido);
-				ResultSet  rs=pstm.executeQuery();
-				while(rs.next()){
-					
-					
-						int IdContacto =rs.getInt(1);
-						String Nombre=rs.getString(2);
-						String Apellidos=rs.getString(3);
-						String Estimado= rs.getString(4);
-						String Direccion= rs.getString(5);
-						String Ciudad= rs.getString(6);
-						String EdoOProv= rs.getString(7);
-						String CodPostal= rs.getString(8);
-						String Region= rs.getString(9);
-						String Pais= rs.getString(10);
-						String NombreCompania=rs.getString(11);
-						String Cargo= rs.getString(12);
-						String TelefonoTrabajo= rs.getString(13);
-						String ExtensionTrabajo= rs.getString(14);
-						String TelefonoMovil= rs.getString(15);
-						String NumFax= rs.getString(16);
-						String NomCorreoElectronico=rs.getString(17);
-						List<TipoContacto> tiposContacto = consultarTipoContacto();
-						for(TipoContacto c: tiposContacto){
-							if (c.getIdTipoContacto()==rs.getInt(18)) {
-								tipoContacto=c;
-							}
-						}						
-						String Notas=rs.getString(19);			
-						
-						
-						rs.close();
-						
-					
-					aux= new Contacto(IdContacto, Nombre, Apellidos, Estimado, Direccion, Ciudad, 
-							EdoOProv, CodPostal, Region, Pais, NombreCompania,
-							Cargo, TelefonoTrabajo, ExtensionTrabajo,TelefonoMovil, NumFax,
-							NomCorreoElectronico, Notas,tipoContacto);
-					
-									
-					resultados.add(aux);
+			pstm.setString(1, apellido);
+			ResultSet  rs=pstm.executeQuery();
+			while(rs.next()){
+				int IdContacto =rs.getInt(1);
+				String Nombre=rs.getString(2);
+				String Apellidos=rs.getString(3);
+				String Estimado= rs.getString(4);
+				String Direccion= rs.getString(5);
+				String Ciudad= rs.getString(6);
+				String EdoOProv= rs.getString(7);
+				String CodPostal= rs.getString(8);
+				String Region= rs.getString(9);
+				String Pais= rs.getString(10);
+				String NombreCompania=rs.getString(11);
+				String Cargo= rs.getString(12);
+				String TelefonoTrabajo= rs.getString(13);
+				String ExtensionTrabajo= rs.getString(14);
+				String TelefonoMovil= rs.getString(15);
+				String NumFax= rs.getString(16);
+				String NomCorreoElectronico=rs.getString(17);
+				List<TipoContacto> tiposContacto = consultarTipoContacto();
+				for(TipoContacto c: tiposContacto){
+					if (c.getIdTipoContacto()==rs.getInt(18)) {
+						tipoContacto=c;
 					}
-							
+				}						
+				String Notas=rs.getString(19);									
+				rs.close();	
+			
+				aux= new Contacto(IdContacto, Nombre, Apellidos, Estimado, Direccion, Ciudad, 
+						EdoOProv, CodPostal, Region, Pais, NombreCompania,
+						Cargo, TelefonoTrabajo, ExtensionTrabajo,TelefonoMovil, NumFax,
+						NomCorreoElectronico, Notas,tipoContacto);
+					
+				resultados.add(aux);
+			}					
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		return resultados;
-		
-		
 	}
+	
+	/*Creacion del metodo de la fabrica abstracta del metodo consultarLlamda*/
+	
 	@Override
 	public List<Llamada> consultarLlamada(Contacto contacto) {
 		List<Llamada> listaLlamadas=new ArrayList<Llamada>();
@@ -313,48 +311,33 @@ public class FachadaBD implements FachadaPersistente {
 					Llamada llamada =new Llamada(idLlamada, contacto, fechaLlamada, asunto, notas);
 					listaLlamadas.add(llamada);
 				}
-				
-				
 			}
-			
-			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		return listaLlamadas;
 	}
+	
+	/*Creacion del metodo de la fabrica abstracta del metodo consultartTipoContacto*/
 
 	@Override
 	public List<TipoContacto> consultarTipoContacto(){
 	
-	List<TipoContacto> tiposContacto = new ArrayList<TipoContacto>();
-	
+		List<TipoContacto> tiposContacto = new ArrayList<TipoContacto>();
 
-	
 		try {
-		stm = con.createStatement();
-		ResultSet rs = stm.executeQuery("SELECT * FROM TIPOSDECONTACTO");
-		
-		while (rs.next()) {
-			
-		int idTipoContacto = rs.getInt(1);		
-		String tipo = rs.getString(2);
-		
-		TipoContacto tipoContacto = new TipoContacto(idTipoContacto,tipo);
-		tipoContacto.toString();
-		tiposContacto.add(tipoContacto);
-		
-		}
-		
+			stm = con.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT * FROM TIPOSDECONTACTO");
+			while (rs.next()) {
+				int idTipoContacto = rs.getInt(1);		
+				String tipo = rs.getString(2);
+				TipoContacto tipoContacto = new TipoContacto(idTipoContacto,tipo);
+				tipoContacto.toString();
+				tiposContacto.add(tipoContacto);
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		 return tiposContacto;
-		
 	}
-
-	
-
 }

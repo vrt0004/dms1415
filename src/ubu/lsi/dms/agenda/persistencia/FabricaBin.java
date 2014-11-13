@@ -4,18 +4,20 @@ package ubu.lsi.dms.agenda.persistencia;
  * @author alumno
  *
  */
-public class FabricaBin implements FabricaPersistencia 
-{
+public class FabricaBin implements FabricaPersistencia {
+	
+	/*Creacion de la fachada concreta de fabrica BIN*/
+	
 	FachadaBin fachadaAgenda = FachadaBin.getInstance();
 	
 	private static FabricaBin instancia;
 	
-	private FabricaBin()
-	{
-	}
+	/*Constructor privado de la fabricaBin*/
+	private FabricaBin(){}
 	
-	public static FabricaBin getInstance()
-	{
+	/*Creacion de la instancia y regreso de la misma*/
+	
+	public static FabricaBin getInstance(){
 		if (instancia == null)
 		{
 			instancia = new FabricaBin();
@@ -23,8 +25,8 @@ public class FabricaBin implements FabricaPersistencia
 		return instancia;
 	}
 	
-	public FachadaPersistente crearFachadaPersistente()
-	{
+	/*Creacion de la fahcada persistente regresando la fachada concreta*/
+	public FachadaPersistente crearFachadaPersistente(){
 		return fachadaAgenda;
 	}
 }

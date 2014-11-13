@@ -1,4 +1,4 @@
-package Test;
+package ubu.lsi.dms.agenda.test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -6,11 +6,12 @@ import java.util.logging.Logger;
 import ubu.lsi.dms.agenda.modelo.*;
 import ubu.lsi.dms.agenda.persistencia.*;
 
-public class Test 
-{
+public class Test {
 
-	public static void main (String[] args)
-	{
+	public static void main (String[] args){
+		
+		/*Declaracion de fachadas y variables a traves de la fachada persistente*/
+		
 		FabricaPersistencia agendaFactoryDB = FabricaBD.getInstance();
 		FabricaPersistencia agendaFactoryBinary = FabricaBin.getInstance();
 		FachadaPersistente agendaDB = agendaFactoryDB.crearFachadaPersistente();
@@ -24,8 +25,8 @@ public class Test
 	
 	private static void test(FachadaPersistente agenda) {
 		TipoContacto tipodecontacto = new TipoContacto(3, "Conciencia");
-		Contacto contacto = new Contacto(3, "Pepito", "Grillo", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "Conciencias SA", "Presidente", "947258258", "0", "652148974", "947258258", "pepitogrillo@gmail.com", "", tipodecontacto);
-		//Llamada llamada1 = new Llamada(3, contacto, "2014-11-5","Cumpleaños", "");
+		Contacto contacto = new Contacto(9, "Pepito", "Grillo", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "Conciencias SA", "Presidente", "947258258", "0", "652148974", "947258258", "pepitogrillo@gmail.com", "", tipodecontacto);
+		Llamada llamada1 = new Llamada(5, contacto, "2014-11-5","Cumpleaños", "");
 		Llamada llamada2 = new Llamada(2, contacto, "2014-11-14","Fiesta", "");
 		
 
@@ -37,9 +38,9 @@ public class Test
 		List<TipoContacto> consultaTipos = null;
 
 		// Inserción de datos.
-		//agenda.crearContacto(contacto);
-		//agenda.crearLlamada(llamada1);
-		//agenda.crearTipoContacto(tipodecontacto);
+		agenda.crearContacto(contacto);
+		agenda.crearLlamada(llamada1);
+		agenda.crearTipoContacto(tipodecontacto);
 
 		// Actualización de datos.
 		Contacto actualizacionContacto = new Contacto(1, "Guepeto", "perez", "Sr.", "Taller de Guepeto", "Rothemburg", "Ansbach", "09007", "Bavaria", "Alemania", "MArionetas SA", "Presidente", "947236547", "0", "65285644", "947236547", "marionetasreales@gmail.com", "", tipodecontacto);

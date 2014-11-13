@@ -7,12 +7,17 @@ import java.io.Serializable;
 */
 @SuppressWarnings("serial")
 public class Contacto implements Serializable{
+	
+	/*Secccion de variables
+	 * Variables privadas para la clase
+	 */
 	private int idContacto;
 	private String nombre , apellidos , estimado , direccion , ciudad , prov , codPostal , region ,
 		pais , nombreCompania , cargo , telefonoTrabajo , extensionTrabajo , telefonoMovil , numFax ,
 		nomCorreoElectronico, notas;
 	private TipoContacto tipoContacto;
 	
+	/*Constructor de la clase contacto*/
 	
 	public Contacto(int idContacto, String nombre, String apellidos,
 				String estimado, String direccion, String ciudad, String prov,
@@ -42,6 +47,9 @@ public class Contacto implements Serializable{
 				this.tipoContacto = tipoContacto;
 	}
 	
+	/*Seecion de geter y seters
+	 * Esta seccion es para el manejo de datos y cambio de los mismos desde otras clases
+	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -193,18 +201,19 @@ public class Contacto implements Serializable{
 	public int getIdContacto() {
 		return idContacto;
 		
-}
-@Override
-public String toString() {
-return "Contacto [idContacto=" + idContacto + ", nombre=" + nombre
-	+ ", apellidos=" + apellidos + ", estimado=" + estimado
-	+ ", direccion=" + direccion + ", ciudad=" + ciudad + ", prov="
-	+ prov + ", codPostal=" + codPostal + ", region=" + region
-	+ ", pais=" + pais + ", nombreCompania=" + nombreCompania
-	+ ", cargo=" + cargo + ", telefonoTrabajo=" + telefonoTrabajo
-	+ ", extensionTrabajo=" + extensionTrabajo + ", telefonoMovil="
-	+ telefonoMovil + ", numFax=" + numFax
-	+ ", nomCorreoElectronico=" + nomCorreoElectronico + ", notas="
-	+ notas + ", tipoContacto=" + tipoContacto + "]";
+	}
+	
+	@Override
+	public String toString() {
+		return "Contacto [idContacto=" + idContacto + ", nombre=" + nombre
+		+ ", apellidos=" + apellidos + ", estimado=" + estimado
+		+ ", direccion=" + direccion + ", ciudad=" + ciudad + ", prov="
+		+ prov + ", codPostal=" + codPostal + ", region=" + region
+		+ ", pais=" + pais + ", nombreCompania=" + nombreCompania
+		+ ", cargo=" + cargo + ", telefonoTrabajo=" + telefonoTrabajo
+		+ ", extensionTrabajo=" + extensionTrabajo + ", telefonoMovil="
+		+ telefonoMovil + ", numFax=" + numFax
+		+ ", nomCorreoElectronico=" + nomCorreoElectronico + ", notas="
+		+ notas + ", tipoContacto=" + tipoContacto + "]";
 	}
 }

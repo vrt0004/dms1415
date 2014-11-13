@@ -9,13 +9,15 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class TipoContacto implements Serializable{
-	/**
-	 * 
+	
+	/*Secccion de variables
+	 * Variables privadas para la clase
 	 */
 	
 	private int idTipoContacto;
 	private String TipoContacto;
 	
+	/*Constructor de la clase Tipo de Contacto*/
 	
 	public TipoContacto(int idTipoContacto, String tipoContacto) {
 		super();
@@ -23,7 +25,10 @@ public class TipoContacto implements Serializable{
 		TipoContacto = tipoContacto;
 	}
 
-
+	/*Seccion de geter y seters
+	 * Esta seccion es para obtener los datos y cambiar los mismos desde otra clase
+	 */
+	
 	public String getTipoContacto() {
 		return TipoContacto;
 	}
@@ -43,14 +48,9 @@ public class TipoContacto implements Serializable{
 		return idTipoContacto;
 	}
 
-
 	@Override
 	public String toString() {
 		return "TipoContacto [idTipoContacto=" + idTipoContacto
 				+ ", TipoContacto=" + TipoContacto + "]";
 	}
-	
-	
-	
-
 }

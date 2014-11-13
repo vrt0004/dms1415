@@ -10,8 +10,10 @@ import ubu.lsi.dms.agenda.modelo.TipoContacto;
  * @author alumno
  *
  */
-public interface FachadaPersistente 
-{
+public interface FachadaPersistente {
+	
+	/*Fachada abstracta interface*/
+	
 	public void crearContacto(Contacto contacto);
 	public void crearLlamada(Llamada llamada);
 	public void crearTipoContacto(TipoContacto tipoContacto);

@@ -10,12 +10,17 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Llamada implements Serializable{
 	
+	/*Secccion de variables
+	 * Variables privadas para la clase
+	 */
+	
 	 private int idLlamada;
 	 private Contacto contacto;
 	 private String fechaLlamada ;
 	 private String asunto,notas;
 	 
 	 
+	 /*Constructor de la clase Llamada*/
 
 	public Llamada(int idLlamada, Contacto contacto, String fechaLlamada,
 			String asunto, String notas) {
@@ -27,7 +32,9 @@ public class Llamada implements Serializable{
 		this.notas = notas;
 	}
 	
-	
+	/*Seccion de geter y seters
+	 * En esta seccion se definen los geter y seter de la clase para ser usado por otras clases
+	 */
 	public String getFechaLlamada() {
 		return fechaLlamada;
 	}
@@ -82,10 +89,4 @@ public class Llamada implements Serializable{
 				+ ", fechaLlamada=" + fechaLlamada + ", asunto=" + asunto
 				+ ", notas=" + notas + "]";
 	}
-
-	 
-	 
-	   
-	
-
 }
