@@ -1,4 +1,8 @@
 package ubu.lsi.dms.agenda.test;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/vrt0004/dms1415.git
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
